@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI.Benefits</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080d19;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:30px 15px;background:linear-gradient(135deg,#21154b,#101c35)}
+h1{font-size:38px;color:#36d9ff}
+header p{color:#d0d9ed}
+main{max-width:950px;margin:auto;padding:20px}
+input{width:100%;padding:15px;border-radius:12px;border:1px solid #425174;background:#141f35;color:white;font-size:16px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+button{padding:10px 14px;border:0;border-radius:20px;background:#263653;color:white}
+button.active{background:#7656ff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#151f35;border:1px solid #2a3958;border-radius:15px;padding:20px}
+.card h2{color:#7ce5ff}
+.card p{color:#c3cce0;line-height:1.6}
+.card a{color:#8eabff}
+footer{text-align:center;padding:25px;color:#9ca9c2}
+</style>
+</head>
+<body>
+<header>
+<h1>AI.Benefits 🤖</h1>
+<p>Discover AI. Learn More. Create More.</p>
+<p>Explore how Artificial Intelligence helps in everyday life.</p>
+</header>
+<main>
+<h2>Explore AI Uses</h2>
+<input id="search" placeholder="🔍 Search AI uses..." oninput="filterCards()">
+<div class="filters">
+<button class="active" onclick="choose('All',this)">All</button>
+<button onclick="choose('Education',this)">Education</button>
+<button onclick="choose('Creativity',this)">Editing</button>
+<button onclick="choose('Technology',this)">Technology</button>
+<button onclick="choose('Writing',this)">Writing</button>
+<button onclick="choose('Daily Life',this)">Daily Life</button>
+</div>
+<div class="grid" id="grid">
+<div class="card" data-cat="Education">
+<h2>🎓 Education</h2>
+<p>Understand lessons, prepare notes, practise questions and learn new subjects.</p>
+<a href="https://chatgpt.com/" target="_blank">Explore AI tools ↗</a>
+</div>
+<div class="card" data-cat="Creativity">
+<h2>🎨 Photo Editing</h2>
+<p>Explore image enhancement, background removal and creative graphic design.</p>
+<a href="https://www.canva.com/" target="_blank">Explore Canva ↗</a>
+</div>
+<div class="card" data-cat="Creativity">
+<h2>🎬 Video Editing</h2>
+<p>Create captions, plan videos and explore AI-powered editing features.</p>
+<a href="https://www.capcut.com/" target="_blank">Explore CapCut ↗</a>
+</div>
+<div class="card" data-cat="Technology">
+<h2>💻 Coding</h2>
+<p>Learn coding, understand errors and build websites with AI assistance.</p>
+<a href="https://github.com/features/copilot" target="_blank">Explore coding AI ↗</a>
+</div>
+<div class="card" data-cat="Writing">
+<h2>✍️ Writing & Translation</h2>
+<p>Draft essays, improve grammar, translate languages and organise ideas.</p>
+<a href="https://chatgpt.com/" target="_blank">Explore writing AI ↗</a>
+</div>
+<div class="card" data-cat="Daily Life">
+<h2>🔎 Information</h2>
+<p>Explore new topics, summarise information and discover useful ideas. Verify important facts.</p>
+<a href="https://www.perplexity.ai/" target="_blank">Explore Perplexity ↗</a>
+</div>
+<div class="card" data-cat="Daily Life">
+<h2>🗓️ Productivity</h2>
+<p>Plan tasks, organise schedules and improve daily productivity.</p>
+<a href="https://workspace.google.com/" target="_blank">Explore tools ↗</a>
+</div>
+<div class="card" data-cat="Education">
+<h2>🌐 Language Learning</h2>
+<p>Practise vocabulary, explore grammar and improve communication skills.</p>
+<a href="https://www.duolingo.com/" target="_blank">Explore Duolingo ↗</a>
+</div>
+</div>
+<p id="empty" style="display:none">No matching results. Try another search.</p>
+</main>
+<footer>AI.Benefits | College Project<br>Use AI responsibly. Always verify important information.</footer>
+<script>
+let category='All';
+function choose(cat,btn){
+category=cat;
+document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+filterCards();
+}
+function filterCards(){
+let q=document.getElementById('search').value.toLowerCase();
+let count=0;
+document.querySelectorAll('.card').forEach(card=>{
+let match=(category==='All'||card.dataset.cat===category)&&card.innerText.toLowerCase().includes(q);
+card.style.display=match?'':'none';
+if(match)count++;
+});
+document.getElementById('empty').style.display=count?'none':'block';
+}
+</script>
+</body>
+</html>
